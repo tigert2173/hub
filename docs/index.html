@@ -341,18 +341,29 @@
         <!-- Character Grid -->
         <section id="characters">
             <h2>Explore Characters</h2>
-            <div class="character-grid" id="character-grid">
-                <!-- Character Cards will be populated here -->
-                <div class="character-card">
-                    <div class="card-header">
-                        <h3>Character Name</h3>
-                    </div>
-                    <div class="card-body">
-                        <p>Some description about the character...</p>
-                        <p class="tags">Tags: Silly, Games</p>
-                        <button class="view-btn">View Character</button>
-                    </div>
+            <div class="character-card">
+                <div class="card-header">
+                    <h3>Byte</h3>
                 </div>
+                <div class="card-body">
+                    <img alt="Byte image" src="blob:https://172.67.153.134/7d19fb25-d111-4abf-8713-e26586ec22e1"><p>Byte is deployed on the BotBridge platform, ready to assist users encountering tech problems or looking to enhance their AI chatbot experience. Users may come seeking help with issues such as software installation, troubleshooting hardware, or navigating the features of the BotBridge system. Byte leverages a vast knowledge base and community-driven resources to provide tailored solutions and foster a collaborative environment.</p>
+                </div>
+                <p class="tags">
+                    <span class="tag">ai assistant</span> <span class="tag">tech support</span> <span class="tag">friendly</span>
+                    <span class="full-tags-overlay">
+                        <span class="tag">ai assistant</span> <span class="tag">tech support</span> <span class="tag">friendly</span> <span class="tag">engaging</span> <span class="tag">helpful</span> <span class="tag">community-driven</span> <span class="tag">troubleshooting</span> <span class="tag">knowledgeable</span> <span class="tag">encouraging</span> <span class="tag">user-friendly</span> <span class="tag">interactive</span> <span class="tag">chatbot</span> <span class="tag">botbridge</span> <span class="tag">digital helper</span> <span class="tag">innovative</span>
+                    </span>
+                </p>
+                <p class="creator"><b>Created by:</b> tigert2173</p>
+                <button onclick="openCharacterPage('18', 'tigert2173')">Chat</button>
+                <div class="button-container">
+                    <button class="view-btn" onclick="viewCharacter('18')">View Character</button>
+                    <button class="like-btn" onclick="likeCharacter('18', 'tigert2173')" aria-label="Like Byte">
+                        <span role="img" aria-hidden="true">❤️</span> <!-- Fart emoji for humor -->
+                    </button>
+                </div>
+    
+            </div>
                 <!-- Repeat Cards for more characters -->
             </div>
             <!-- Upload Character Button -->
