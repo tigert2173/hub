@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Management</h1>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Priority</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User rows will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        const backendUrl = 'https://characters.BotBridgeai.net:3000/api'; // Set your backend URL here
+
+        async function fetchUsers() {
+            try {
+                const response = await fetch(`${backendUrl}/users`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch users.');
+                }
+
+                const users = await response.json();
+                const userTableBody = document.querySelector('#userTable tbody');
+                userTableBody.innerHTML = '';
+
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.role}</td>
+                        <td>${user.priority}</td>
+                        <td>
+                            <button onclick="suspendUser('${user.username}')">Suspend</button>
+                            <button onclick="deleteUser('${user.username}')">Delete</button>
+                        </td>
+                    `;
+                    userTableBody.appendChild(row);
+                });
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        async function suspendUser(username) {
+            try {
+                const response = await fetch(`${backendUrl}/users/suspend`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ username })
+                });
+
+                const message = await response.json();
+                alert(message.message);
+                fetchUsers(); // Refresh the user list
+            } catch (error) {
+                alert('Error suspending user: ' + error.message);
+            }
+        }
+        
+    async function deleteUser(username) {
+    const confirmation = confirm(`Are you sure you want to delete user "${username}"?`);
+    if (!confirmation) return; // Exit if the user cancels
+
+    try {
+        const response = await fetch(`${backendUrl}/delete-user/${username}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        const contentType = response.headers.get('content-type');
+
+        // Check if the response is JSON
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Error: ${response.status} ${errorBody}`);
+        }
+
+        if (contentType && contentType.includes('application/json')) {
+            const message = await response.json();
+            alert(message.message);
+        } else {
+            throw new Error(`Unexpected response type: ${contentType}`);
+        }
+        fetchUsers(); // Refresh the user list
+    } catch (error) {
+        alert('Error deleting user: ' + error.message);
+    }
+}
+
+        // Fetch users on page load
+        fetchUsers();
+    </script>
+    
+    <script>
+        const socket = new WebSocket('wss://BotBridgeai.net'); // Update with your domain
+    
+        // Connection opened
+        socket.addEventListener('open', (event) => {
+            console.log('Connected to WebSocket server');
+        });
+    
+        // Listen for messages
+        socket.addEventListener('message', (event) => {
+            console.log('Message from server:', event.data);
+            // Handle ping or any other messages from the server
+            if (event.data === 'ping') {
+                // You can respond to pings if needed
+                socket.send('pong'); // Example response
+            }
+        });
+    
+        // Connection closed
+        socket.addEventListener('close', (event) => {
+            console.log('Disconnected from WebSocket server');
+        });
+    </script>
+    
+</body>
+</html>

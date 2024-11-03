@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site at Capacity</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Orange and Blue Color Theme */
+    body {
+      background-color: #f0f4f8;
+      color: #004c99;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .logo-container {
+      margin: 20px 0;
+    }
+
+    .logo {
+      width: 150px;
+    }
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .loader .circle {
+      width: 20px;
+      height: 20px;
+      margin: 0 5px;
+      border-radius: 50%;
+      background-color: #ff8800; /* Orange */
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .loader .circle.two {
+      animation-delay: -1s;
+      background-color: #0052cc; /* Blue */
+    }
+
+    .loader .circle.three {
+      animation-delay: -0.5s;
+      background-color: #ff8800; /* Orange */
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .message {
+      padding: 20px;
+      color: #004c99;
+    }
+
+    .message h1 {
+      color: #ff8800; /* Orange */
+    }
+
+    .message p {
+      font-size: 18px;
+    }
+
+    .joke-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .botimage {
+      width: 120px;
+      margin-right: 15px;
+    }
+
+    .joke-container {
+      background-color: #0052cc; /* Blue */
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .joke-text {
+      color: #ffdd99; /* Light orange for contrast */
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="../images/logotransparent.png" alt="Logo" class="logo">
+  </div>
+
+  <div class="loader">
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+    <div class="circle three"></div>
+  </div>
+
+  <div class="message">
+    <h1>Uh-oh! Our site is a bit crowded 🚶‍♂️🚶‍♀️</h1>
+    <p><b>We’re experiencing high traffic, but hang tight!</b><br>
+    Number of users waiting: <span id="waitingCount">0</span><br>
+    Estimated wait time: <span id="waitTime">0</span> minutes</p>
+    <p>We’ll get you in soon! In the meantime, enjoy some lighthearted fun while you wait 😄</p>
+  </div>
+
+  <!-- Joke Image Container -->
+  <div class="joke-image-container">
+    <img src="../images/QueueBot.png" alt="Queue Bot" class="botimage">
+    <div class="joke-container">
+      <p class="joke-text">"I tried to start a queue, but now everyone's in line!"</p>
+    </div>
+  </div>
+
+  <script>
+    // Queue humor logic
+    const jokeContainer = document.querySelector('.joke-container');
+    const jokeText = document.querySelector('.joke-text');
+
+    const jokes = [
+      "“I tried to start a queue, but now everyone's in line!”",
+      "“Patience is a virtue, and right now it’s your best friend!”",
+      "“Waiting builds character... or so I've been told!”",
+      "“Good things come to those who wait… like access to this site!”",
+      "“They say the best part is worth the wait!”",
+      "“Cue the queue jokes! See what I did there?”",
+      "“Patience: Because all great things take time!”",
+      "“Waiting: the art of being okay with not getting in right now!”",
+      "“I hope you’ve brushed up on your waiting skills!”",
+      "“Hang tight! We're working hard to clear some space!”",
+      "“Sometimes, the journey is just as fun as the destination… hopefully!”",
+      "“If patience is a skill, you’re about to level up!”",
+      "“Hang in there! We promise the wait will be worth it.”",
+      "“Maybe think of it as a suspenseful plot twist?”",
+      "“A little queue humor to pass the time!”",
+      "“Waiting: a small price to pay for something great!”",
+    ];
+
+    function showJoke() {
+      jokeText.textContent = jokes[Math.floor(Math.random() * jokes.length)];
+      jokeContainer.classList.add('show');
+      
+      setTimeout(() => {
+        jokeContainer.classList.remove('show');
+      }, 12000); // Show joke for 12 seconds
+    }
+
+    setInterval(showJoke, Math.random() * 4000 + 12500);
+
+    showJoke();
+
+    // Waiting info logic
+    let waitingCount = 0;
+    const waitTimePerPerson = 2; // Estimated time in minutes per person
+
+    function updateWaitingInfo() {
+      fetch('/api/waiting-count')
+        .then(response => response.json())
+        .then(data => {
+          waitingCount = data.waitingCount;
+          document.getElementById('waitingCount').textContent = waitingCount;
+          document.getElementById('waitTime').textContent = Math.ceil(waitingCount * waitTimePerPerson);
+
+          // Check if a slot is available
+          if (waitingCount < 1) {
+            window.location.href = '/'; // Redirect to the main page if a slot is free
+          }
+        })
+        .catch(error => console.error('Error fetching waiting count:', error));
+    }
+
+    // Simulate users joining the queue
+    setInterval(updateWaitingInfo, 3000); // Update every 3 seconds
+  </script>
+</body>
+</html>

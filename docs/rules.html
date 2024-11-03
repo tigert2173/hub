@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotBridge Community Hub - Rules</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu2.0.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Sidebar and content styling */
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            width: 200px;
+            padding: 10px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        .sidebar h3 {
+            color: #e67e22;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.3s;
+        }
+        .sidebar ul li a:hover {
+            color: #e67e22;
+        }
+        .content {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .content-container {
+            padding: 10px;
+            border-left: 2px solid #3498db;
+            background-color: #2b2b2b;
+            border-radius: 5px;
+        }
+        h2, h3 {
+            margin: 0;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        h3 {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="left-content">
+                <a href="/" class="logo">
+                    <div class="logo">
+                        <img src="logo.png" alt="BotBridge Logo">
+                    </div>
+                </a>
+                <a href="/" class="text">
+                    <div class="text">
+                        <span class="letter">B</span>
+                        <span class="letter">o</span>
+                        <span class="letter">t</span>
+                        <span class="letter">B</span>
+                        <span class="letter">r</span>
+                        <span class="letter">i</span>
+                        <span class="letter">d</span>
+                        <span class="letter">g</span>
+                        <span class="letter">e</span>
+                    </div>
+                </a>
+            </div>
+            <div class="right-content">
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="index.html" class="dropbtn">Characters</a>
+                        <div class="dropdown-content">
+                            <a href="index.html">Character Hub</a>
+                            <a href="editor.html">Upload Character</a>
+                            <a href="mycharacters.html">My Characters</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="community.html" class="dropbtn">Community</a>
+                        <div class="dropdown-content">
+                            <a href="rules.html">Rules</a>
+                            <a href="join-our-team.html">Join Our Team</a>
+                            <a href="/BotBridgeTales/">Stories Page</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="myaccount.html" class="dropbtn">Account</a>
+                        <div class="dropdown-content">
+                            <a href="myaccount.html">Account</a>
+                            <a href="mylikes.html">My Likes</a>
+                            <a href="login.html">Login</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="contact.html" class="dropbtn">Help</a>
+                        <div class="dropdown-content">
+                            <a href="documentation.html">Documentation</a>
+                            <a href="updates.html">Updates & Features</a>
+                            <a href="contact.html">Contact</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="contribute.html" class="nav-btn">Contribute</a>
+                    </li>
+                </ul>     
+                <div id="login-status" class="login-status"></div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>  
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Community Rules</h1>
+            <p>Guidelines to keep BotBridge positive and welcoming.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <aside class="sidebar">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#general-conduct">General Conduct</a></li>
+                    <li><a href="#content-guidelines">Content Guidelines</a></li>
+                    <li><a href="#prohibited-activities">Prohibited Activities</a></li>
+                    <li><a href="#enforcement">Enforcement</a></li>
+                    <li><a href="#reporting">Reporting Issues</a></li>
+                </ul>
+            </aside>
+
+            <section class="content">
+                <h2 id="general-conduct">General Conduct</h2>
+                <div class="content-container">
+                    <p>We expect all community members to treat each other with respect, promoting a welcoming and friendly atmosphere for everyone.</p>
+                </div>
+            
+                <h2 id="content-guidelines">Content Guidelines</h2>
+                <div class="content-container">
+                    <h3>Appropriate Content:</h3>
+                    <p>Content shared on BotBridge should be constructive, suitable for diverse audiences, and free of offensive material.</p>
+                    <h3>Attribution:</h3>
+                    <p>Credit original creators when sharing their work to promote respect and integrity.</p>
+                    <h3>Character Images:</h3>
+                    <p>All images uploaded should be respectful and align with our community standards. Any content deemed inappropriate will be removed.</p>
+                </div>
+            
+                <h2 id="prohibited-activities">Prohibited Activities</h2>
+                <div class="content-container">
+                    <p>The following activities are not allowed on BotBridge:</p>
+                    <ul>
+                        <li>Spamming or excessive self-promotion</li>
+                        <li>Sharing personal information without consent</li>
+                        <li>Using multiple accounts to evade restrictions</li>
+                        <li>Creating characters that imitate real people deceptively</li>
+                        <li>Engaging in inappropriate or harmful content creation</li>
+                    </ul>
+                </div>
+            
+                <h2 id="enforcement">Enforcement</h2>
+                <div class="content-container">
+                    <p>Violations may lead to warnings, temporary bans, or permanent removal from the community, depending on the severity of the issue.</p>
+                </div>
+            
+                <h2 id="reporting">Reporting Issues</h2>
+                <div class="content-container">
+                    <p>If you encounter a violation, please contact our moderators at <a href="mailto:report@botbridge.net">report@botbridge.net</a>.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/menu.js"></script>
+</body>
+</html>

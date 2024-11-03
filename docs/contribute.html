@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotBridge.AI - Support Us</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header, .hero, .container {
+            padding: 20px;
+        }
+        .hero {
+            text-align: center;
+            background-color: #2980b9;
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #e67e22;
+        }
+        .donation-options, .host-section {
+            background-color: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .benefit {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .tier {
+            background-color: #34495e;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 5px solid #e67e22;
+            border-radius: 8px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #e67e22;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .host-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .host-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+    </style>
+        <link rel="stylesheet" href="css/menu2.0.css">
+
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <nav class="navbar">
+        <div class="left-content">
+            <a href="/" class="logo"> <!-- Make the logo clickable -->
+            <div class="logo">
+                <img src="logo.png" alt=" ">
+            </div>
+        </a>
+        <a href="/" class="text">
+           <div class="text">
+                    <span class="letter letter-1">B</span>
+                    <span class="letter letter-2">o</span>
+                    <span class="letter letter-3">t</span>
+                    <span class="letter letter-4">B</span>
+                    <span class="letter letter-5">r</span>
+                    <span class="letter letter-6">i</span>
+                    <span class="letter letter-7">d</span>
+                    <span class="letter letter-8">g</span>
+                    <span class="letter letter-9">e</span>
+                </div>
+        </a>
+        </div>
+<div class="right-content">
+    <ul class="nav-links">
+        <!-- Characters with dropdown -->
+        <li class="dropdown">
+            <a href="index.html" class="dropbtn" onclick="toggleDropdown(event)">Characters</a>
+            <div class="dropdown-content">
+                <a href="index.html">Characters Hub</a>
+                <a href="editor.html">Upload Character</a>
+                <a href="mycharacters.html">My Characters</a>
+            </div>
+        </li>
+
+        <!-- Community with dropdown -->
+        <li class="dropdown">
+            <a href="rules.html" class="dropbtn" onclick="toggleDropdown(event)">Community</a>
+            <div class="dropdown-content">
+                <a href="rules.html">Rules</a>
+                <a href="join-our-team.html">Get Involved in the AI Scene</a>
+                <a href="/BotBridgeTales/">Old Stories Page</a>
+            </div>
+        </li>
+
+        <!-- Account with dropdown -->
+        <li class="dropdown">
+            <a href="myaccount.html" class="dropbtn" onclick="toggleDropdown(event)">Account</a>
+            <div class="dropdown-content">
+                <a href="myaccount.html">Account</a>
+                <a href="mylikes.html">My Likes</a>
+                <a href="login.html">Login</a>
+            </div>
+        </li>
+
+        <!-- Help with dropdown -->
+        <li class="dropdown">
+            <a href="contact.html" class="dropbtn" onclick="toggleDropdown(event)">Help</a>
+            <div class="dropdown-content">
+                <a href="documentation.html">Documentation</a>
+                <a href="updates.html">Updates & Features</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </li>
+
+        <!-- Contribute Button -->
+        <li>
+            <a href="contribute.html" class="nav-btn">Contribute</a>
+        </li>
+    </ul>     
+
+    <div id="login-status" class="login-status"></div>
+
+    <!-- Hamburger menu for mobile view -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>  
+</div>
+</nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Support BotBridge.AI</h1>
+    <p>Help keep our services free and accessible by contributing through donations or by partnering with us to host an API server.</p>
+</section>
+
+<!-- Main Content -->
+<main>
+    <div class="container">
+
+        <!-- Hosting Section -->
+        <section class="host-section">
+            <h2>1. Host an API Server</h2>
+            <p>Support <b>BotBridgeAI</b>, one of the many third-party services powered by <b>BotBridge</b>, by partnering with us to host an API server. While <b>BotBridge</b> handles the technical infrastructure and backend operations, <b>BotBridgeAI</b> is dedicated to delivering unique services to users. By hosting a server, you help us enhance performance and availability for all users, ensuring that we maintain high-quality and accessible services across our platform.</p>
+            <p>This initiative is in the very early stages. If you're interested in partnering with us, please reach out to ##### either on our Discord or by email at <a href="mailto:hosting@BotBridgeai.net">hosting@BotBridgeai.net</a>.</p>
+            <button class="host-button" onclick="location.href='https://botbridge.net/hosting.html';">Learn How to Host</button>
+        </section>
+
+        
+
+        <!-- Donation Section -->
+        <section class="donation-options">
+            <h2>2. Donate to Support Us</h2>
+            <p>Your donations directly support the development of new features and improvements. Each tier comes with exclusive benefits:</p>
+
+            <!-- Donor Tiers -->
+            <div class="tier">
+                <h3>$5 or More Donor</h3>
+                <ul>
+                    <li><span class="benefit">Customization Options:</span> Access to cool customization options (character cards, colors, profile).</li>
+                    <li><span class="benefit">Early Access:</span> Access to beta/alpha versions of the site/features.</li>
+                    <li><span class="benefit">Ad Removal:</span> Enjoy an ad-free experience.</li>
+                    <li><span class="benefit">Community Recognition:</span> Reddit flair & Discord role.</li>
+                </ul>
+            </div>
+            <div class="tier">
+                <h3>$15 or More Donor</h3>
+                <ul>
+                    <li>All Level 1 perks</li>
+                    <li><span class="benefit">Queue Reduction:</span> 20% or up to 8 seconds off queuing wait.</li>
+                </ul>
+            </div>
+            <div class="tier">
+                <h3>$30 or More Donor</h3>
+                <ul>
+                    <li>All Level 1 and 2 perks</li>
+                    <li><span class="benefit">Queue Reduction:</span> 40% or ~16 seconds off queuing wait.</li>
+                </ul>
+            </div>
+            <div class="tier">
+                <h3>$50 or More Donor</h3>
+                <ul>
+                    <li>All Level 1, 2, and 3 perks</li>
+                    <li><span class="benefit">Queue Reduction:</span> 60% or ~28 seconds off queuing wait.</li>
+                    <li><span class="benefit">Higher Visibility:</span> Increased placement/visibility of your bots.</li>
+                </ul>
+            </div>
+            <div class="tier">
+                <h3>$80 or More Donor</h3>
+                <ul>
+                    <li>All Level 1, 2, 3, and 4 perks</li>
+                    <li><span class="benefit">Queue Reduction:</span> 80% or ~60 seconds off queuing wait.</li>
+                    <li><span class="benefit">Profile Customization:</span> Custom HTML edit of your user profile page.</li>
+                </ul>
+            </div>
+            <p><b>Important Update:</b> We will not be opening donations until we receive at least $300 in total contributions from interested donors. If you're interested in contributing, please email <a href="mailto:donate@BotBridgeai.net">donate@BotBridgeai.net</a>.
+        </section>
+
+    </div>
+</main>
+<script src="js/menu.js"></script>
+
+</body>
+</html>

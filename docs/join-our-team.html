@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Team - BotBridge.AI Character Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu2.0.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        .hero {
+            background-color: #cc9900;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+        .content-containerboarder {
+            padding: 20px;
+            margin: 20px 0; /* Added margin for spacing between boxes */
+        }
+        .content-container {
+            padding: 20px;
+            margin: 20px 0; /* Added margin for spacing between boxes */
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        .email-link {
+            color: #66b3ff;
+            text-decoration: none;
+        }
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        .cta-btn {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cta-btn:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="left-content">
+                <a href="/" class="logo"> <!-- Make the logo clickable -->
+                <div class="logo">
+                    <img src="logo.png" alt=" ">
+                </div>
+            </a>
+            <a href="/" class="text">
+            <div class="text">
+                    <span class="letter letter-1">B</span>
+                    <span class="letter letter-2">o</span>
+                    <span class="letter letter-3">t</span>
+                    <span class="letter letter-4">B</span>
+                    <span class="letter letter-5">r</span>
+                    <span class="letter letter-6">i</span>
+                    <span class="letter letter-7">d</span>
+                    <span class="letter letter-8">g</span>
+                    <span class="letter letter-9">e</span>
+                </div>
+            </a>
+            </div>
+    <div class="right-content">
+        <ul class="nav-links">
+            <!-- Characters with dropdown -->
+            <li class="dropdown">
+                <a href="index.html" class="dropbtn" onclick="toggleDropdown(event)">Characters</a>
+                <div class="dropdown-content">
+                    <a href="index.html">Characters Hub</a>
+                    <a href="editor.html">Upload Character</a>
+                    <a href="mycharacters.html">My Characters</a>
+                </div>
+            </li>
+    
+            <!-- Community with dropdown -->
+            <li class="dropdown">
+                <a href="rules.html" class="dropbtn" onclick="toggleDropdown(event)">Community</a>
+                <div class="dropdown-content">
+                    <a href="rules.html">Rules</a>
+                    <a href="join-our-team.html">Get Involved in the AI Scene</a>
+                    <a href="/BotBridgeTales/">Old Stories Page</a>
+                </div>
+            </li>
+    
+            <!-- Account with dropdown -->
+            <li class="dropdown">
+                <a href="myaccount.html" class="dropbtn" onclick="toggleDropdown(event)">Account</a>
+                <div class="dropdown-content">
+                    <a href="myaccount.html">Account</a>
+                    <a href="mylikes.html">My Likes</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </li>
+    
+            <!-- Help with dropdown -->
+            <li class="dropdown">
+                <a href="contact.html" class="dropbtn" onclick="toggleDropdown(event)">Help</a>
+                <div class="dropdown-content">
+                    <a href="documentation.html">Documentation</a>
+                    <a href="updates.html">Updates & Features</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </li>
+    
+            <!-- Contribute Button -->
+            <li>
+                <a href="contribute.html" class="nav-btn">Contribute</a>
+            </li>
+        </ul>     
+    
+        <div id="login-status" class="login-status"></div>
+    
+        <!-- Hamburger menu for mobile view -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>  
+    </div>
+    </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Join Our Creative Team at BotBridge.AI!</h1>
+            <p>Are you passionate about innovation and bringing unique ideas to life? Join us in crafting a platform that inspires creativity and engages a vibrant community! We’re looking for enthusiastic individuals who want to make a difference.</p>
+            <button class="cta-btn">Apply Now</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+    <!-- Team Information Section -->
+    <section id="team-info">
+        <div class="content-containerborder">
+            <h2>Why Join Us?</h2>
+            <div class="content-container">
+                <p>As a member of our team, you’ll collaborate with people who are passionate about innovation and creativity. Whether your strengths lie in moderation, character creation, or community engagement, there’s a place for you in our welcoming environment.</p>
+                <h3>Our Values</h3>
+                <ul>
+                    <li>Respect: We foster a positive, inclusive atmosphere for everyone.</li>
+                    <li>Creativity: We encourage fresh ideas and celebrate innovation!</li>
+                    <li>Community: Together, we build a fun and supportive space for all.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section for Applications -->
+    <section id="contact">
+        <div class="content-containerborder">
+            <h2>Get in Touch to Join</h2>
+            <div class="content-container">
+                <p>If you're excited about the opportunity to volunteer with us, we’d love to hear from you! Please email us with your first name, preferred role, any relevant experience, and your availability. This is a volunteer position, so no need to share your last name—just bring your enthusiasm and ideas!</p>
+                <p>Email us at: <a href="mailto:team@BotBridge.net" class="email-link">team@BotBridge.net</a></p>
+                <p>Connect with us on Discord: <a href="https://discord.gg/" target="_blank" rel="noopener noreferrer">Join Our Server!</a></p>
+                <p>We’re excited to hear your ideas and explore how you can contribute to our community!</p>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 BotBridge.AI Character Hub. All rights reserved.</p>
+        <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/hub.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+        const socket = new WebSocket('wss://BotBridgeAI.net'); // Update with your domain
+    
+        // Connection opened
+        socket.addEventListener('open', (event) => {
+            console.log('Connected to WebSocket server');
+        });
+    
+        // Listen for messages
+        socket.addEventListener('message', (event) => {
+            console.log('Message from server:', event.data);
+            // Handle ping or any other messages from the server
+            if (event.data === 'ping') {
+                // You can respond to pings if needed
+                socket.send('pong'); // Example response
+            }
+        });
+    
+        // Connection closed
+        socket.addEventListener('close', (event) => {
+            console.log('Disconnected from WebSocket server');
+        });
+    </script>
+    
+</body>
+</html>

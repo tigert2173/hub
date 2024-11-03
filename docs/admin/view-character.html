@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Character JSON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* Dark background for consistency */
+            color: #f4f4f4; /* Light text color */
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #00aaff; /* Neon blue for headings */
+        }
+        #character-data {
+            background: #2a2a2a; /* Darker background for the data container */
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto; /* Enables scrolling for overflow */
+            max-height: 70vh; /* Limits height to keep layout intact */
+        }
+        pre {
+            background: #222; /* Dark background for JSON display */
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto; /* Enables scrolling for overflow */
+            max-height: 60vh; /* Limits height of JSON display */
+            white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+            word-wrap: break-word; /* Wrap long words onto the next line */
+            overflow-wrap: break-word; /* Ensure that long words break to fit within the container */
+        }
+        #character-image {
+            max-width: 25%; /* Make sure the image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Rounded corners for aesthetics */
+            margin-bottom: 15px; /* Space between the image and the JSON */
+            cursor: pointer; /* Change cursor to pointer to indicate clickability */
+            display: none; /* Start hidden */
+            filter: blur(25px); /* Apply blur effect by default */
+            transition: filter 0.1s; /* Smooth transition for the blur effect */
+        }
+        button {
+            background-color: #ff6600; /* Neon orange for buttons */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px; /* Space between buttons */
+        }
+        button:hover {
+            background-color: #ff9933; /* Lighter orange on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Character JSON Viewer</h1>
+    <img id="character-image" src="" alt="Character Image" />
+    <div id="character-data"></div>
+    <button id="back-button">Back to Characters</button>
+    <div id="action-buttons"></div> <!-- Action buttons will be populated here -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            const urlParams = new URLSearchParams(window.location.search);
+            const uploader = urlParams.get('uploader');
+            const characterId = urlParams.get('id');
+
+            if (!token) {
+                document.getElementById('character-data').innerText = 'You are not logged in.';
+                return;
+            }
+
+            loadCharacterData(uploader, characterId, token);
+            loadCharacterImage(uploader, characterId, token); // Load the character image
+            setupActionButtons(characterData.status.toLowerCase(), username, characterId, token);
+
+        });
+
+        async function loadCharacterData(uploader, characterId, token) {
+            try {
+                const response = await fetch(`${BACKEND_URL}/admin/characters/${uploader}/${characterId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `${token}` // Use the token here
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load character data: ${response.statusText}`);
+                }
+
+                const characterData = await response.json();
+                document.getElementById('character-data').innerHTML = `<pre>${JSON.stringify(characterData, null, 2)}</pre>`;
+                setupActionButtons(characterData.status.toLowerCase(), uploader, characterId, token);
+            } catch (error) {
+                console.error('Error loading character data:', error);
+                document.getElementById('character-data').innerText = 'Error loading character data.';
+            }
+        }
+        function setupActionButtons(status, username, characterId, token) {
+            const actionButtonsDiv = document.getElementById('action-buttons');
+            actionButtonsDiv.innerHTML = ''; // Clear previous buttons
+
+            // Create the Approve button
+            const approveButton = document.createElement('button');
+            approveButton.innerText = 'Approve';
+            approveButton.onclick = () => approveCharacter(characterId, username);
+            if (status === 'approved') {
+                approveButton.style.display = 'none'; // Hide if already approved
+            }
+            actionButtonsDiv.appendChild(approveButton);
+
+            // Create the Revoke button
+            const revokeButton = document.createElement('button');
+            revokeButton.innerText = 'Revoke';
+            revokeButton.onclick = () => revokeCharacter(characterId, username);
+            if (status !== 'approved') {
+                revokeButton.style.display = 'none'; // Hide if not approved
+            }
+            actionButtonsDiv.appendChild(revokeButton);
+
+            // Create the Delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.onclick = () => deleteCharacter(characterId, username);
+            actionButtonsDiv.appendChild(deleteButton);
+        }
+
+        async function loadCharacterImage(uploader, characterId, token) {
+            try {
+                const imageUrl = `${BACKEND_URL}/characters/${uploader}/images/${characterId}`;
+                const response = await fetch(imageUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `${token}` // Use the token here
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load character image: ${response.statusText}`);
+                }
+
+                const contentType = response.headers.get('Content-Type');
+                const imageElement = document.getElementById('character-image');
+
+                if (contentType && contentType.startsWith('image/')) {
+                    const blob = await response.blob();
+                    const imageObjectURL = URL.createObjectURL(blob);
+                    imageElement.src = imageObjectURL; // Set the image source
+                    imageElement.style.display = 'block'; // Show the image
+                } else {
+                    throw new Error('Response is not a valid image.');
+                }
+            } catch (error) {
+                console.error('Error loading character image:', error);
+                const imageElement = document.getElementById('character-image');
+                imageElement.alt = 'Character image not found.';
+                imageElement.src = ''; // Clear the image src
+                imageElement.style.display = 'none'; // Ensure the image is hidden
+            }
+        }
+
+
+        // Toggle image blur effect on click
+        document.getElementById('character-image').addEventListener('click', function() {
+            if (this.style.filter === 'blur(25px)') {
+                this.style.filter = 'none'; // Remove blur
+            } else {
+                this.style.filter = 'blur(25px)'; // Apply blur
+            }
+        });
+
+        document.getElementById('back-button').addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
+    
+    <script>
+        const socket = new WebSocket('wss://BotBridgeai.net'); // Update with your domain
+    
+        // Example of sending a message through the WebSocket
+        socket.addEventListener('open', () => {
+            console.log('Connected to the WebSocket server');
+        });
+    
+        socket.addEventListener('message', (event) => {
+            console.log('Message from server:', event.data);
+            // Handle incoming messages here
+        });
+    </script>
+        <script src="../js/admin.js"></script>
+
+</body>
+</html>
